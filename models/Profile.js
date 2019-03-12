@@ -35,13 +35,7 @@ const ProfileSchema = new Schema({
     githubusername: {
         type: String
     },
-    posts: [{
-        userposts: {
-            type: Schema.Types.ObjectId,
-            ref: 'post'
-        }
-    }
-    ],
+    posts: [],
     experience: [{
         title: {
             type: String

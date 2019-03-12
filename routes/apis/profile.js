@@ -102,7 +102,7 @@ router.get('/user/:user_id', async (req, res) => {
     try {
         const profile = await Profile.findOne({
             user: req.params.user_id
-        }).populate('user', ['name', 'avatar'])
+        }).populate('user', ['name', 'avatar']).populate('post', ['text', 'avatar', 'imageUrl', 'likes', 'comments'])
 
         if (!profile) {
             errors.noprofile = 'There is no profile for this user'
