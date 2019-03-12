@@ -3,21 +3,33 @@ const mongoose = require("mongoose")
 const users = require('./routes/apis/users');
 const profile = require('./routes/apis/profile');
 const posts = require('./routes/apis/post');
+const bodyParser = require('body-parser');
+const passport = require('passport');
 
-
-const app = express();
-const port = process.env.PORT || 5000;
-
-mongoose
-    .connect(process.env.MONGODB_URI || "mongodb://localhost/SocialMedia")
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/SocialMedia")
     .then(() => console.log("MongoDB connected"))
     .catch((err) => console.log(err));
 
-app.get("/", (req, res) => res.send("Hello"));
+
+const port = process.env.PORT || 5000;
+
+
+const app = express();
+
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
+app.use(bodyParser.json())
+
+//Passport middleware
+app.use(passport.initialize());
+
+//Password config
+require('./config/passport')(passport);
 
 app.use('/api/users', users);
 app.use('/api/profile', profile);
-app.use('/api/posts', posts);
+app.use('/api/post', posts);
 
 
 
