@@ -3,7 +3,7 @@ This is an social media App api build in node.js.
 * User can login and create their account. 
 * JWT is used for authentication.
 * After successfully signup user can Post the their qoutes with images in the dashboard, which will visible to other users. 
-* Other users can link and comment on the post.
+* Other users can like and comment on the post.
 * All Posts are protected, means only the authenticate user can delete their post.
 
 ## For access and run the code you need to make a keys.js file in config folder. After successfully create the file copy this code and config it according to your credentials 
