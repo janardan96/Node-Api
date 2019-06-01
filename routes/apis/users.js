@@ -199,7 +199,7 @@ router.post("/forgot", async (req, res) => {
 
     //mailing token
     const link = `${req.protocol}://${req.headers.host}/api/users/reset/${token}`;
-    await mailer.sendMail(email, link).catch((err) => console.log(`Error in sending Link ${err}`))
+    await mailer.sendMailPassword(email, link).catch((err) => res.status(400).json(`Error in sending Link ${err}`));
     success.sended = `Link is sended successfully to ${email}`
     res.json({ success: success.sended })
   } catch (error) {
